@@ -1,25 +1,83 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
+const ejs = require("ejs");
 const alert = require("alert");
+const _ = require("lodash");
 
 const app = express();
+
+const mongoose = require("mongoose");
+const fs = require("fs");
+const path = require("path");
+require("dotenv/config");
+
+mailchimp.setConfig({
+  apiKey: process.env.MAILCHIMP_API,
+  server: process.env.MAILCHIMP_SERVER,
+});
+
+mongoose.connect(
+  process.env.MONGO_URL,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err) => {
+    console.log("connected");
+  }
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mailchimp.setConfig({
-  apiKey: "3d180a816a5ccbe653fb1644f4dd9c08-us20",
-  server: "us20",
+app.set("view engine", "ejs");
+
+const multer = require("multer");
+const { stringify } = require("querystring");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + "-" + Date.now());
+  },
 });
 
+const upload = multer({ storage: storage });
+
+const imageSchema = new mongoose.Schema({
+  img: {
+    data: Buffer,
+    contentType: String,
+  },
+});
+
+Image = new mongoose.model("Image", imageSchema);
+
+const blogSchema = new mongoose.Schema({
+  title: String,
+  content: String,
+  url: String,
+  image: imageSchema,
+});
+
+Blog = new mongoose.model("Blog", blogSchema);
+
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  Blog.find(
+    {},
+    {
+      _id: 0,
+    },
+    { sort: { _id: -1 } },
+    function (err, items) {
+      res.render("index", { blog: items });
+    }
+  );
 });
 
 app.post("/", (req, res) => {
   const userEmail = req.body.email;
-  const listId = "cc6f91bd54";
+  const listId = process.env.MAILCHIMP_LIST_ID;
   const subscribingUser = {
     email: userEmail,
   };
@@ -33,18 +91,50 @@ app.post("/", (req, res) => {
       alert(" Succesfully Subscribed!");
       res.redirect("/");
     } catch (err) {
-      res.sendFile(__dirname + "/failure.html");
-      console.log(err);
+      res.render("failure");
+      console.log(err.status);
     }
   }
 
   run();
 });
 
-app.get("/failure", (req, res) => {
-  res.sendFile(__dirname + "/failure.html");
+app.get("/compose", (req, res) => {
+  res.render("compose");
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Server started on port 3000`);
+app.post("/compose", upload.single("image"), (req, res, next) => {
+  const obj = {
+    img: {
+      data: fs.readFileSync(
+        path.join(__dirname + "/uploads/" + req.file.filename)
+      ),
+      contentType: "image/png",
+    },
+  };
+  Image.create(obj, (err, item) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const post = new Blog({
+        title: _.capitalize(req.body.title),
+        content: _.capitalize(req.body.content),
+        url: req.body.url,
+        image: obj,
+      });
+      post.save();
+    }
+  });
+  res.redirect("/");
+});
+
+//the POST handler for processing the uploaded file
+
+const port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port, function () {
+  console.log("Server started on port 3000");
 });

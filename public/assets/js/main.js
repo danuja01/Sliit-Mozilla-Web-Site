@@ -170,15 +170,15 @@
    */
   new Swiper(".testimonials-slider", {
     speed: 600,
-    loop: true,
+    loop: false,
     autoplay: {
-      delay: 5000,
+      delay: 3000,
       disableOnInteraction: false,
     },
     slidesPerView: "auto",
     pagination: {
       el: ".swiper-pagination",
-      type: "bullets",
+      dynamicBullets: true,
       clickable: true,
     },
     breakpoints: {
