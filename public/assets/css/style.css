@@ -314,7 +314,7 @@ h6 {
 @media (max-width: 991px) {
   #hero {
     height: 100vh;
-    padding-top: 130px;
+    padding-top: 100px;
     align-items: center;
   }
 
