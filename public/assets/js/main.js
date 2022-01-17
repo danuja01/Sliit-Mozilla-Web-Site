@@ -196,6 +196,11 @@
         slidesPerView: 3,
         spaceBetween: 20,
       },
+
+      1800: {
+        slidesPerView: 4,
+        spaceBetween: 20,
+      },
     },
   });
 })();
