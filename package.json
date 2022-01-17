@@ -12,5 +12,26 @@
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-elastic-carousel": "^0.11.5"
-  }
+  },
+  "name": "sliit-mozilla",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IT21023378/Sliit-Mozilla-Web-Site.git"
+  },
+  "author": "Danuja Jayasuriya",
+  "license": "ISC",
+  "engines": {
+    "node": "16.13.1"
+  },
+  "bugs": {
+    "url": "https://github.com/IT21023378/Sliit-Mozilla-Web-Site/issues"
+  },
+  "homepage": "https://github.com/IT21023378/Sliit-Mozilla-Web-Site#readme",
+  "description": ""
 }
