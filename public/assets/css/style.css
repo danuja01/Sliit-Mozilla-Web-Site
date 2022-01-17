@@ -559,6 +559,11 @@ section {
   padding-top: 25px;
 }
 
+@media (max-width: 575px) {
+  .blogs .testimonial-item .card {
+    width: 20rem;
+  }
+}
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
