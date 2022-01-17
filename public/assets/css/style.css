@@ -341,7 +341,7 @@ h6 {
     width: 70%;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   #hero {
     height: auto;
     padding-top: 100px;
