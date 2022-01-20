@@ -888,3 +888,45 @@ section {
     text-align-last: center;
   }
 }
+
+
+/* contact_us page */
+.contact_details .card{
+  margin-bottom: 1rem;
+}
+
+.contact_details input{
+  margin-bottom: 1rem;
+}
+
+.contact_details textarea{
+  margin-bottom: 1rem;
+}
+
+.messenger-icons .fa-whatsapp{
+  color: #25d366;
+  transition: transform .2s;
+}
+.messenger-icons .fa-whatsapp:hover{
+  transform: scale(1.2);
+}
+
+.messenger-icons .fa-facebook-messenger{
+  color: #0084ff;
+  transition: transform .2s;
+}
+.messenger-icons .fa-facebook-messenger:hover{
+  transform: scale(1.2);
+}
+.messenger-icons .fa-viber{
+  color: #8f5db7;
+  transition: transform .2s;
+}
+.messenger-icons .fa-viber:hover{
+  transform: scale(1.2);
+}
+ 
+.messenger-icons .fab{
+  margin-right: 1rem;
+}
+

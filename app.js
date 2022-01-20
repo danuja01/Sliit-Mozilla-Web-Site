@@ -12,6 +12,9 @@ const fs = require("fs");
 const path = require("path");
 require("dotenv/config");
 
+var formidable = require("express-formidable");
+app.use(formidable());
+
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API,
   server: process.env.MAILCHIMP_SERVER,
@@ -74,6 +77,36 @@ app.get("/", (req, res) => {
     }
   );
 });
+
+
+
+//All blogs
+app.post("/blogs", async function (req, res) {
+  
+  var limit = 6;
+  var startFrom = parseInt(req.fields.startFrom);
+
+  Blog.find(
+    {},
+    {
+      _id: 0,
+    },
+    { sort: { _id: -1}, skip: startFrom, limit: limit },
+    function (err, items) {
+      res.json({ blog: items });
+    }
+  );
+});
+
+
+app.get("/blogs", (req, res) => {
+  res.render("blogs");
+});
+
+app.get("/contact_us", (req, res) => {
+  res.render("contact_us");
+});
+
 
 app.post("/", (req, res) => {
   const userEmail = req.body.email;
