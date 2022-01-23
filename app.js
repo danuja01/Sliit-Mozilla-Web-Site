@@ -9,10 +9,15 @@ const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const { request } = require("express");
 
 require("dotenv/config");
 
+var formidable = require("express-formidable");
+
 const app = express();
+
+app.use(formidable());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -122,6 +127,10 @@ app.get(
   }
 );
 
+app.get("/blogs", (req, res) => {
+  res.render("blogs");
+});
+
 app.get("/contact_us", (req, res) => {
   res.render("contact_us");
 });
@@ -132,6 +141,14 @@ app.get("/login", (req, res) => {
 
 app.get("/invaliduser", (req, res) => {
   res.render("invaliduser");
+});
+
+app.get("/compose", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render("compose");
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.post("/", (req, res) => {
@@ -158,12 +175,20 @@ app.post("/", (req, res) => {
   run();
 });
 
-app.get("/compose", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render("compose");
-  } else {
-    res.redirect("/login");
-  }
+app.post("/blogs", async function (req, res) {
+  var limit = 6;
+  var startFrom = parseInt(req.fields.startFrom);
+
+  Blog.find(
+    {},
+    {
+      _id: 0,
+    },
+    { sort: { _id: -1 }, skip: startFrom, limit: limit },
+    function (err, items) {
+      res.json({ blog: items });
+    }
+  );
 });
 
 app.post("/compose", (req, res) => {

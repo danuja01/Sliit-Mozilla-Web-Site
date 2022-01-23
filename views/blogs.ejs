@@ -66,11 +66,11 @@ crossorigin="anonymous"
               Campus Club - SLIIT</a
             >
             <ul class="ms-auto">
-              <li><a class="nav-link scrollto active" href="/">Home</a></li>
-              <li><a class="nav-link scrollto" href="#about">About</a></li>
-              <li><a class="nav-link scrollto" href="/blog">Blogs</a></li>
+              <li><a class="nav-link scrollto" href="/">Home</a></li>
+              <li><a class="nav-link scrollto" href="/#about">About</a></li>
+              <li><a class="nav-link scrollto active" href="/blog">Blogs</a></li>
               <li>
-                <a class="nav-link scrollto" href="#event">Events</a>
+                <a class="nav-link scrollto" href="/#event">Events</a>
               </li>
               <li><a class="nav-link scrollto" href="/contact_us">Contact Us</a></li>
              
@@ -126,7 +126,7 @@ crossorigin="anonymous"
   
   
            
-            <div class="row" id="card-area">
+            <div class="row ow-cols-1 " id="card-area">
 
                
             </div>
@@ -213,7 +213,9 @@ var loadMore = true;
         
  
  // tell the method and URL of request
- ajax.open("POST", "http://localhost:3000/blogs", true);
+//  ajax.open("POST", "http://localhost:3000/blogs", true);
+ ajax.open("POST", "https://sliitmcc.herokuapp.com/blogs", true);
+
 
  // Detecting request state change
  ajax.onreadystatechange = function () {
@@ -229,16 +231,15 @@ var loadMore = true;
 
                 var html = '';
                 for(var i=0; i<data.blog.length; i++) {
-                    html += '<div class="col-lg-4 col-md-4 d-flex justify-content-center align-items-stretch">';
+                    html += '<div class="col-xl-4 col-sm-6 d-flex justify-content-center align-items-stretch">';
                     html += '<div class="card" style="width: 20rem; margin-bottom: 2rem">';
                     html += '<div class="card-img">';
-                    html += '<img src="data:image/'+ data.blog[i].image.img.contentType + ';base64,'+
-                      data.blog[i].image.img.data.toString('base64') + ' alt="Image" class="img-fluid card-img-top">';
+                    html += '<img src="'+data.blog[i].image+'" alt="Image" class="img-fluid card-img-top">';
                     html += '</div>';
-                    html += '<div class="card-body">';
+                    html += '<div class="card-body d-flex flex-column">';
                     html += '<h3 class="card-title">' + data.blog[i].title + '</h3>';
                     html += '<p class="card-text">' + data.blog[i].content.substring(0, 190) + '...</p>';
-                    html += '<a href="' + data.blog[i].url + '" class="readmore">Read More</a>';
+                    html += '<a href="' + data.blog[i].url + '" class="readmore mt-auto ">Read More <i class="bi bi-arrow-right-short"></i></a>';
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';
