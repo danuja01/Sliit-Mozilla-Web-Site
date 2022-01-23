@@ -85,9 +85,7 @@ passport.use(
             return done(err);
           }
           //No user was found... so create a new user with values from Facebook (all the profile. stuff)
-          if (!user) {
-            return done(err);
-          } else {
+          else {
             //found user. Return
             return done(err, user);
           }
