@@ -132,6 +132,10 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.get("/invaliduser", (req, res) => {
+  res.render("invaliduser");
+});
+
 app.post("/", (req, res) => {
   const userEmail = req.body.email;
   const listId = process.env.MAILCHIMP_LIST_ID;
@@ -184,7 +188,7 @@ app.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/compose",
-    failureRedirect: "/login",
+    failureRedirect: "/invaliduser",
     session: true,
   })
 );
