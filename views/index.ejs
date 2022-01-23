@@ -207,8 +207,7 @@ crossorigin="anonymous"
                   <div class="testimonial-item h-100 d-flex justify-content-center">
                     <div class="card h-100 ">
                       <img
-                      src="data:image/<%=blog.image.img.contentType%>;base64,
-                      <%=blog.image.img.data.toString('base64')%>"
+                      src="<%= blog.image %>"
                         class="card-img-top"
                         alt="..."
                       />

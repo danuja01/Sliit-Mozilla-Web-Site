@@ -67,23 +67,11 @@
       .form-signin .btn {
         margin-top: 20px;
       }
-
-      .form-signin input[type="file"] {
-        /* padding-top: 20px; */
-        width: 100%;
-        border: 1px solid gray;
-        padding: 2px;
-      }
     </style>
   </head>
   <body>
     <div class="container">
-      <form
-        action="/compose"
-        method="post"
-        enctype="multipart/form-data"
-        class="form-signin"
-      >
+      <form action="/compose" method="post" class="form-signin">
         <div class="form-group">
           <h1>UPLOAD NEW BLOGS</h1>
           <label for="title">Title:</label>
@@ -100,6 +88,18 @@
             required
           />
         </div>
+
+        <div class="form-group">
+          <label for="image">Upload Thumbnail URL:</label>
+          <input
+            type="url"
+            name="image"
+            placeholder="ex:- https://image.com"
+            pattern="https://.*"
+            class="form-control"
+            required
+          />
+        </div>
         <div class="form-group">
           <label for="content">Content:</label>
           <textarea
@@ -109,11 +109,7 @@
             required
           ></textarea>
         </div>
-        <div class="form-group">
-          <label for="image">Upload Thumbnail:</label>
-          <input type="file" id="image" name="image" required />
-          <small class="form-text text-muted">(maximum size: 1mb)</small>
-        </div>
+
         <button type="submit" class="btn btn-primary w-100">ADD</button>
       </form>
     </div>
