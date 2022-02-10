@@ -929,3 +929,14 @@ section {
 .messenger-icons .fab {
   margin-right: 1rem;
 }
+
+#upcomming_events_title{
+  background-color: orange;
+   background-image: linear-gradient(45deg, #f3ec78, #EC5800);
+   background-size: 100%;
+   background-repeat: repeat;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent; 
+   -moz-background-clip: text;
+   -moz-text-fill-color: transparent;
+}

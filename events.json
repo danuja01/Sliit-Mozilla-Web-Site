@@ -1,0 +1,88 @@
+{
+    "latest_events": [
+      {
+        "id": 1,
+        "title": "Google Hashcode",
+        "description": "SLIIT Mozilla Club been the main volunteers for the Google Hashcode.",
+        "date": "01/01/2022",
+        "location": "Stein Studios",
+        "img": "https://scholarshipscorner.website/wp-content/uploads/2019/02/stencxxsail.png",
+        "link": "https://www.facebook.com/"
+      },
+      {
+        "id": 2,
+        "title": "Google Hashcode",
+        "description": "SLIIT Mozilla Club been the main volunteers for the Google Hashcode.",
+        "date": "01/01/2022",
+        "location": "Stein Studios",
+        "img": "https://scholarshipscorner.website/wp-content/uploads/2019/02/stencxxsail.png",
+        "link": "https://www.facebook.com/"
+      },
+      {
+        "id": 3,
+        "title": "Google Hashcode",
+        "description": "SLIIT Mozilla Club been the main volunteers for the Google Hashcode.",
+        "date": "01/01/2022",
+        "location": "Stein Studios",
+        "img": "https://scholarshipscorner.website/wp-content/uploads/2019/02/stencxxsail.png",
+        "link": "https://www.facebook.com/"
+      }
+    ],
+
+    "past_events": [
+      {
+        "id": 1,
+        "title": "Google Hashcode",
+        "description": "SLIIT Mozilla Club been the main volunteers for the Google Hashcode.",
+        "date": "01/01/2022",
+        "location": "Stein Studios",
+        "img": "https://scholarshipscorner.website/wp-content/uploads/2019/02/stencxxsail.png",
+        "link": "https://www.facebook.com/"
+      },
+      {
+        "id": 2,
+        "title": "Google Hashcode",
+        "description": "SLIIT Mozilla Club been the main volunteers for the Google Hashcode.",
+        "date": "01/01/2022",
+        "location": "Stein Studios",
+        "img": "https://scholarshipscorner.website/wp-content/uploads/2019/02/stencxxsail.png",
+        "link": "https://www.facebook.com/"
+      },
+      {
+        "id": 3,
+        "title": "Google Hashcode",
+        "description": "SLIIT Mozilla Club been the main volunteers for the Google Hashcode.",
+        "date": "01/01/2022",
+        "location": "Stein Studios",
+        "img": "https://scholarshipscorner.website/wp-content/uploads/2019/02/stencxxsail.png",
+        "link": "https://www.facebook.com/"
+      },
+      {
+        "id": 4,
+        "title": "Google Hashcode",
+        "description": "SLIIT Mozilla Club been the main volunteers for the Google Hashcode.",
+        "date": "01/01/2022",
+        "location": "Stein Studios",
+        "img": "https://scholarshipscorner.website/wp-content/uploads/2019/02/stencxxsail.png",
+        "link": "https://www.facebook.com/"
+      },
+      {
+        "id": 5,
+        "title": "Google Hashcode",
+        "description": "SLIIT Mozilla Club been the main volunteers for the Google Hashcode.",
+        "date": "01/01/2022",
+        "location": "Stein Studios",
+        "img": "https://scholarshipscorner.website/wp-content/uploads/2019/02/stencxxsail.png",
+        "link": "https://www.facebook.com/"
+      },
+      {
+        "id": 6,
+        "title": "Google Hashcode",
+        "description": "SLIIT Mozilla Club been the main volunteers for the Google Hashcode.",
+        "date": "01/01/2022",
+        "location": "Stein Studios",
+        "img": "https://scholarshipscorner.website/wp-content/uploads/2019/02/stencxxsail.png",
+        "link": "https://www.facebook.com/"
+      }
+    ]
+  }
