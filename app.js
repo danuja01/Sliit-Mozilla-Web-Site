@@ -90,8 +90,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/compose", //ONLY FOR LOCAL USE
-      // callbackURL: "https://sliitmcc.herokuapp.com/auth/google/compose",
+      // callbackURL: "http://localhost:3000/auth/google/compose", //ONLY FOR LOCAL USE
+      callbackURL: "https://sliitmcc.herokuapp.com/auth/google/compose",
     },
     function (accessToken, refreshToken, email, done) {
       User.findOne(
