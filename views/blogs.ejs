@@ -124,16 +124,26 @@ crossorigin="anonymous"
   
             <!-- Blog data from json file -->
   
-  
-           
-            <div class="row ow-cols-1 " id="card-area">
-
-               
-            </div>
-            <div class="blog-btn">
-              <div class="btn btn-outline-primary btn-lg" id = "load_more" onclick="getData();">Load More</div>
-            </div>
         
+            <div class="row row-col-3 " id="card-area">
+              <% blog.forEach(function(blog) { %>
+
+                <div class="col  d-flex justify-content-around ">
+                  <div class="card" style="width: 20rem; margin-bottom: 2rem">
+                  <div class="card-img">
+                  <img src="<%= blog.image %>" alt="Image" class="img-fluid card-img-top">
+                  </div>
+                  <div class="card-body d-flex flex-column">
+                  <h3 class="card-title"><%= blog.title %></h3>
+                  <p class="card-text"><%= blog.content.substring(0,190) + "..." %></p>
+                  <a href="<%= blog.url %>" class="readmore mt-auto ">Read More <i class="bi bi-arrow-right-short"></i></a>
+                  </div>
+                  </div>
+                  </div>
+
+            <% }) %>
+            </div>
+            <!-- <div class="btn btn-outline-primary btn-lg" >Load More</div> -->
         </section>
         <!-- End Testimonials Section -->
       </main>
@@ -183,88 +193,13 @@ crossorigin="anonymous"
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'></script>`
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-    <script>
-
-var loadMore = true;
- 
- window.addEventListener("load", function () {
-     // Calling the function on page load
-     console.log("page loaded");
-     getData();
-  
-    //  $(window).bind('scroll', function() {
-    //      if(!loadMore && $(window).scrollTop() >= $('#data').offset().top + $('#data').outerHeight() - window.innerHeight) {
-    //          // console.log('end reached');
-    //          loadMore = true;
-    //          getData();
-    //      }
-    //  });
- });
 
 
- //Get data function
- var startFrom = 0;
-    function getData() {
-        var ajax = new XMLHttpRequest();
         
- 
- // tell the method and URL of request
- ajax.open("POST", "http://localhost:3000/blogs", true);
-//  ajax.open("POST", "https://sliitmcc.herokuapp.com/blogs", true);
 
-
- // Detecting request state change
- ajax.onreadystatechange = function () {
-
-    
-     if (this.readyState == 4) {
-        
-         if (this.status == 200) {
-
-             var data = JSON.parse(this.responseText);
-             console.log(data.blog[0]);
-            
-
-                var html = '';
-                for(var i=0; i<data.blog.length; i++) {
-                    html += '<div class="col-xl-4 col-sm-6 d-flex justify-content-center align-items-stretch">';
-                    html += '<div class="card" style="width: 20rem; margin-bottom: 2rem">';
-                    html += '<div class="card-img">';
-                    html += '<img src="'+data.blog[i].image+'" alt="Image" class="img-fluid card-img-top">';
-                    html += '</div>';
-                    html += '<div class="card-body d-flex flex-column">';
-                    html += '<h3 class="card-title">' + data.blog[i].title + '</h3>';
-                    html += '<p class="card-text">' + data.blog[i].content.substring(0, 190) + '...</p>';
-                    html += '<a href="' + data.blog[i].url + '" class="readmore mt-auto ">Read More <i class="bi bi-arrow-right-short"></i></a>';
-                    html += '</div>';
-                    html += '</div>';
-                    html += '</div>';
-                   
-                }
-                $('#card-area').append(html);
-                
-                var limit = 6;
-                startFrom = startFrom + limit;
-                
-                if(data.blog.length < limit) {
-                  document.getElementById("load_more").style.visibility = "hidden";
-                }
-               
-            }
-        }
-        };
-
-        var formData = new FormData();
-    formData.append("startFrom", startFrom);
- 
-    // Actually sending the request
-    ajax.send(formData);
-    }
-        
-    </script>
   </body>
 </html>

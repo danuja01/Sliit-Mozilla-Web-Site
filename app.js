@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 const ejs = require("ejs");
-const alert = require("alert");
 const _ = require("lodash");
 const mongoose = require("mongoose");
 const session = require("express-session");
@@ -13,14 +12,12 @@ const { request } = require("express");
 
 require("dotenv/config");
 
-var formidable = require("express-formidable");
+// var formidable = require("express-formidable");
 var eventsData = require("./events.json");
-
 
 const app = express();
 
-app.use(formidable());
-
+// app.use(formidable());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -33,7 +30,7 @@ mailchimp.setConfig({
 
 app.use(
   session({
-    secret: "Our little secret.",
+    secret: "SLIITMOZILLA2022",
     resave: false,
     saveUninitialized: true,
   })
@@ -56,6 +53,17 @@ const blogSchema = new mongoose.Schema({
   image: String,
 });
 
+const eventSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+  date: String,
+  month:String,
+  time:String,
+  location: String,
+  img: String,
+  url: String,
+});
+
 const userSchema = new mongoose.Schema({
   username: String,
   googleId: String,
@@ -64,14 +72,15 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(passportLocalMongoose);
 
 Blog = new mongoose.model("Blog", blogSchema);
+Event = new mongoose.model("Event", eventSchema);
 User = new mongoose.model("User", userSchema);
 
-passport.serializeUser(function (user, done) {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
     done(err, user);
   });
 });
@@ -81,8 +90,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      // callbackURL: "http://localhost:3000/auth/google/compose",
-      callbackURL: "https://sliitmcc.herokuapp.com/auth/google/compose",
+      callbackURL: "http://localhost:3000/auth/google/compose", //ONLY FOR LOCAL USE
+      // callbackURL: "https://sliitmcc.herokuapp.com/auth/google/compose",
     },
     function (accessToken, refreshToken, email, done) {
       User.findOne(
@@ -110,7 +119,17 @@ app.get("/", (req, res) => {
     },
     { sort: { _id: -1 } },
     function (err, items) {
-      res.render("index", { blog: items });
+      Event.find(
+        {},
+        {
+          _id: 0,
+        },
+        { sort: { _id: -1 } },
+        (err, eventsData) => {
+          res.render("index", { blog: items, eventsData: eventsData });
+        }
+      );
+      
     }
   );
 });
@@ -130,16 +149,31 @@ app.get(
 );
 
 app.get("/blogs", (req, res) => {
-  res.render("blogs");
+  Blog.find(
+    {},
+    {
+      _id: 0,
+    },
+    { sort: { _id: -1 } },
+    function (err, items) {
+      res.render("blogs", { blog: items });
+    }
+  );
 });
 
 app.get("/events", (req, res) => {
-  res.render("events", { eventData: eventsData });
-});
-
-
-app.get("/gx", (req, res) => {
-  res.render("events");
+  Event.find(
+    {},
+    {
+      _id: 0,
+    },
+    { sort: { _id: -1 } },
+    (err, eventsData) => {
+      res.render("events", { eventsData: eventsData });
+      console.log(eventsData);
+    }
+  );
+  // res.render("events", { eventData: eventsData });
 });
 
 app.get("/contact_us", (req, res) => {
@@ -168,14 +202,13 @@ app.post("/", (req, res) => {
   const subscribingUser = {
     email: userEmail,
   };
-
   async function run() {
     try {
       const response = await mailchimp.lists.addListMember(listId, {
         email_address: subscribingUser.email,
         status: "subscribed",
       });
-      alert(" Succesfully Subscribed!");
+      console.log(" Succesfully Subscribed!");
       res.redirect("/");
     } catch (err) {
       res.render("failure");
@@ -202,22 +235,43 @@ app.post("/blogs", async function (req, res) {
   );
 });
 
-
-
 app.post("/compose", (req, res) => {
-  const post = new Blog({
-    title: _.capitalize(req.body.title),
-    content: _.capitalize(req.body.content),
-    url: req.body.url,
-    image: req.body.image,
-  });
-  post.save((err) => {
-    if (!err) {
-      res.redirect("/");
-    } else {
-      console.log(err);
-    }
-  });
+  const option = req.body.submit;
+
+  if (option == "blogs") {
+    const post = new Blog({
+      title: _.capitalize(req.body.title),
+      content: _.capitalize(req.body.content),
+      url: req.body.url,
+      image: req.body.image,
+    });
+    post.save((err) => {
+      if (!err) {
+        res.redirect("/");
+      } else {
+        console.log(err);
+      }
+    });
+  } else if (option == "events") {
+    const event = new Event({
+      title: _.capitalize(req.body.title),
+      description: _.capitalize(req.body.content),
+      date: req.body.date,
+      month:req.body.month,
+      time:req.body.time,
+      location: _.capitalize(req.body.location),
+      url: req.body.url,
+      img: req.body.image,
+    });
+    event.save((err) => {
+      if (!err) {
+        console.log(req.body.time);
+        res.redirect("/");
+      } else {
+        console.log(err);
+      }
+    });
+  }
 });
 
 app.post(

@@ -1,21 +1,17 @@
 {
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.72",
-    "alert": "^5.0.10",
     "body-parser": "^1.19.1",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
-    "express-formidable": "^1.2.0",
     "express-session": "^1.17.2",
     "lodash": "^4.17.21",
     "mongoose": "^6.1.6",
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
     "passport-google-oauth20": "^2.0.0",
-    "passport-local-mongoose": "^6.1.0",
-    "react": "^17.0.2",
-    "react-elastic-carousel": "^0.11.5"
+    "passport-local-mongoose": "^6.1.0"
   },
   "name": "sliit-mozilla",
   "version": "1.0.1",

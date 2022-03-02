@@ -106,138 +106,52 @@ crossorigin="anonymous"
 
     <main id="main">
 
-      <section id="testimonials" class="blogs section-bg">
-        
+      <section id="events-card" class="event section-bg">
         <div class="container-fluid">
           <div class="section-title">
-            <span>Upcoming Events</span>
-            <h2>Upcoming Events</h2>
-            <!-- <p>
-             Our latest blogs.
-            </p> -->
+            <span>Check out our Upcoming Events!</span>
+            <h2>Check out our Upcoming Events!</h2>
+  
           </div>
-
-          <!-- Blog data from json file -->
-         
-          <div class="row" id="card-area">
-              <div class="card-group">
-                <div
-                  class="testimonials-slider swiper"
-                  data-aos="fade-up"
-                  data-aos-delay="100"
-                >
-              
-                  <div class="swiper-wrapper">
-                    <% eventData.latest_events.forEach(function(event) { %>
-                      <div class="swiper-slide">
-                        <div class="testimonial-item h-100 d-flex justify-content-center">
-                          <div class="card h-100 ">
-                            <img
-                            src="<%= event.img %>"
-                              class="card-img-top"
-                              alt="..."
-                            />
-                            <div class="card-body d-flex flex-column ">
-                              <h3 class="price-text"><%= event.title %></h3>
-
-                              <table>
-                                <tr>
-                                  <td style="color:dimgray"> <i class="fa fa-calendar" style="padding: 1em;"></i><%= event.date %></td>
-                                  <td style="color:dimgray"> <i class="fa fa-map-marker" style="padding: 1em;">  </i><%= event.location %></td>
-                                </tr>
-                              </table>
-
-                              <p><%= event.description %></p>
-                              <a href="<%=  %>"
-                                class="w-100 mt-auto btn btn-lg btn-primary btn-card"
-                              >
-                              View More</a>
-                            </div>
-                          </div>
+          <div class="container">
+            <div class="row">
+              <% eventsData.forEach(event => { %>
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="card h-100 card-margin">
+                  <img src="<%=event.img%>" class="events-card-img" alt="...">
+                  <div class="card-header no-border">
+                    <h5 class="card-title"><%=event.title%></h5>
+                  </div>
+                  <div class="card-body" style="padding: 0 1rem;">
+                    <div class="widget-49">
+                      <div class="widget-49-title-wrapper">
+                        <div class="widget-49-date-primary">
+                          <span class="widget-49-date-day"><%=event.date%></span>
+                          <span class="widget-49-date-month"><%=event.month%></span>
+                        </div>
+                        <div class="widget-49-meeting-info">
+                          <span class="widget-49-pro-title"><%=event.location%></span>
+                          <span class="widget-49-meeting-time"><%=event.time%></span>
                         </div>
                       </div>
-                      <% }) %>
-                  </div>
-                </div>   
-                  <div class="swiper-pagination"></div>
-                </div>
-                </div>
-              </div>
-          </div>
-              <!-- End testimonial item -->
-              
-              <p></p>
-
-
-      </section>
-
-
-      <!-- ======= Testimonials Section ======= -->
-      <section id="testimonials" class="blogs section-bg" style="background-color: white;">
-        
-        <div class="container-fluid">
-          <div class="section-title">
-            <span>Past Events</span>
-            <h2>Past Events</h2>
-            <!-- <p>
-             Our latest blogs.
-            </p> -->
-          </div>
-
-          <!-- Blog data from json file -->
-
-
-         
-          <div class="row" id="card-area">
-              <div class="card-group">
-                <div
-                  class="testimonials-slider swiper"
-                  data-aos="fade-up"
-                  data-aos-delay="100"
-                >
-              
-                  <div class="swiper-wrapper">
-                    <% eventData.past_events.forEach(function(event) { %>
-                      <div class="swiper-slide">
-                        <div class="testimonial-item h-100 d-flex justify-content-center">
-                          <div class="card h-100 ">
-                            <img
-                            src="<%= event.img %>"
-                              class="card-img-top"
-                              alt="..."
-                            />
-                            <div class="card-body d-flex flex-column ">
-                              <h3 class="price-text"><%= event.title %></h3>
-                              <p><%= event.description %></p>
-                              <a href="<%=  %>"
-                                class="w-100 mt-auto btn btn-lg btn-primary btn-card"
-                              >
-                              View More</a>
-                            </div>
-                          </div>
-                        </div>
+  
+                      <p class="widget-49-meeting-item"><%=event.description%></p>
+  
+                      <div class="widget-49-meeting-action">
+                        <a href="#" class="mt-auto btn btn-sm btn-flash-border-primary">Register</a>
                       </div>
-                      <% }) %>
+                    </div>
                   </div>
-                </div>   
-                  <div class="swiper-pagination"></div>
-                </div>
-
-
-
-
-
-       
                 </div>
               </div>
+              <% }); %>
+            </div>
           </div>
-              <!-- End testimonial item -->
-              
-              <p></p>
-
-
+          <div class="blog-btn">
+            <a href="/events" class="btn btn-outline-primary btn-lg">View More</a>
+          </div>
+        </div>
       </section>
-      <!-- End Testimonials Section -->
     </main>
     <!-- End #main -->
 
@@ -323,5 +237,6 @@ crossorigin="anonymous"
         }
     </script>
     <script src="assets/js/main.js"></script>
+    <script type="text/javascript"></script>
   </body>
 </html>
