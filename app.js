@@ -57,8 +57,7 @@ const eventSchema = new mongoose.Schema({
   title: String,
   description: String,
   date: String,
-  month:String,
-  time:String,
+  time: String,
   location: String,
   img: String,
   url: String,
@@ -90,8 +89,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      // callbackURL: "http://localhost:3000/auth/google/compose", //ONLY FOR LOCAL USE
-      callbackURL: "https://sliitmcc.herokuapp.com/auth/google/compose",
+      callbackURL: "http://localhost:3000/auth/google/compose", //ONLY FOR LOCAL USE
+      // callbackURL: "https://sliitmcc.herokuapp.com/auth/google/compose",
     },
     function (accessToken, refreshToken, email, done) {
       User.findOne(
@@ -129,7 +128,6 @@ app.get("/", (req, res) => {
           res.render("index", { blog: items, eventsData: eventsData });
         }
       );
-      
     }
   );
 });
@@ -257,16 +255,14 @@ app.post("/compose", (req, res) => {
       title: _.capitalize(req.body.title),
       description: _.capitalize(req.body.content),
       date: req.body.date,
-      month:req.body.month,
-      time:req.body.time,
+      time: req.body.time,
       location: _.capitalize(req.body.location),
       url: req.body.url,
       img: req.body.image,
     });
     event.save((err) => {
       if (!err) {
-        console.log(req.body.time);
-        res.redirect("/");
+        res.redirect("/compose");
       } else {
         console.log(err);
       }

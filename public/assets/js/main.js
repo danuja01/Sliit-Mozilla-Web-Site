@@ -203,4 +203,38 @@
       },
     },
   });
+
+  new Swiper(".event-slider", {
+    slidesPerView: "auto",
+    spaceBetween: 30,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: true,
+    },
+    scrollbar: {
+      el: ".swiper-scrollbar",
+      hide: true,
+    },
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+
+      645: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+
+      1200: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+      },
+
+      1800: {
+        slidesPerView: 4,
+        spaceBetween: 20,
+      },
+    },
+  });
 })();

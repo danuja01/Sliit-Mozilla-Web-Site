@@ -130,7 +130,7 @@
           </div>
 
           <div class="col-lg-4 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+            <span data-purecounter-start="0" data-purecounter-end="<%=eventsData.length%>" data-purecounter-duration="1" class="purecounter"></span>
             <p>Events</p>
           </div>
 
@@ -232,46 +232,29 @@
           <span>Check out our Upcoming Events!</span>
           <h2>Check out our Upcoming Events!</h2>
 
-        </div>
-        <div class="container">
-          <div class="row">
-            <% eventsData.forEach(event => { %>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-              <div class="card h-100 card-margin">
-                <img src="<%=event.img%>" class="events-card-img" alt="...">
-                <div class="card-header no-border">
-                  <h5 class="card-title"><%=event.title%></h5>
-                </div>
-                <div class="card-body" style="padding: 0 1rem;">
-                  <div class="widget-49">
-                    <div class="widget-49-title-wrapper">
-                      <div class="widget-49-date-primary">
-                        <span class="widget-49-date-day"><%=event.date%></span>
-                        <span class="widget-49-date-month"><%=event.month%></span>
-                      </div>
-                      <div class="widget-49-meeting-info">
-                        <span class="widget-49-pro-title"><%=event.location%></span>
-                        <span class="widget-49-meeting-time"><%=event.time%></span>
+
+          <div class="card-group">
+            <div class="event-slider swiper" data-aos="fade-up" data-aos-delay="100">
+              <div class="swiper-wrapper">
+                <% eventsData.forEach(event => { %>
+                <div class="swiper-slide">
+                    <div class="card h-100 ">
+                      <img src="<%=event.img%>" class="card-img-top" alt="..." />
+                      <div class="card-body d-flex flex-column">
+                        <h5 class="card-title"><%=event.title%></h5>
+                        <small class="mb-2 text-muted"><i class="bi bi-geo-alt-fill"></i> <%=event.location%> &nbsp;<i class="bi bi-calendar"></i> <%=event.date%> &nbsp;<i class="bi bi-alarm"></i> <%=event.time%> &nbsp;</small>
+                        <p class="card-text"><%=event.description%></p>
+                        <a href="<%=event.url%>" class="btn-flash-border-primary mt-auto">View more!</a>
                       </div>
                     </div>
-
-                    <p class="widget-49-meeting-item"><%=event.description%></p>
-
-                    <div class="widget-49-meeting-action">
-                      <a href="#" class="mt-auto btn btn-sm btn-flash-border-primary">Register</a>
-                    </div>
-                  </div>
                 </div>
+                <% }); %>
               </div>
+              <div class="swiper-scrollbar"></div>
             </div>
-            <% }); %>
-
-
-
-
-
           </div>
-        </div>
+      
+       
         <div class="blog-btn">
           <a href="/events" class="btn btn-outline-primary btn-lg">View More</a>
         </div>
