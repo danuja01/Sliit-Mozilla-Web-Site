@@ -69,10 +69,13 @@
     }
 
     let elementPos = select(el).offsetTop;
-    window.scrollTo({
-      top: elementPos - offset,
-      behavior: "smooth",
-    });
+    setTimeout(
+      window.scrollTo({
+        top: elementPos - offset,
+        behavior: "smooth",
+      }),
+      100
+    );
   };
 
   /**
@@ -166,7 +169,7 @@
   });
 
   /**
-   * Testimonials slider
+   *blog Testimonials slider
    */
   new Swiper(".testimonials-slider", {
     speed: 600,
@@ -204,6 +207,8 @@
     },
   });
 
+  // event testimonial slider
+
   new Swiper(".event-slider", {
     slidesPerView: "auto",
     spaceBetween: 30,
@@ -234,6 +239,36 @@
       1800: {
         slidesPerView: 4,
         spaceBetween: 20,
+      },
+    },
+  });
+
+  new Swiper(".team-slider", {
+    centeredSlides: true,
+    loop: true,
+    speed: 500,
+    slidesPerView: 1.5,
+    spaceBetween: 50,
+    clickable: true,
+    autoplay: {
+      delay: 2000,
+    },
+    // navigation: {
+    //   nextEl: ".swiper-button-next",
+    //   prevEl: ".swiper-button-prev",
+    // },
+    breakpoints: {
+      640: {
+        slidesPerView: 2.5,
+      },
+      768: {
+        slidesPerView: 2.75,
+      },
+      1080: {
+        slidesPerView: 3.25,
+      },
+      1280: {
+        slidesPerView: 3.75,
       },
     },
   });

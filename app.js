@@ -13,7 +13,8 @@ const { request } = require("express");
 require("dotenv/config");
 
 // var formidable = require("express-formidable");
-var eventsData = require("./events.json");
+// var eventsData = require("./events.json");
+const committee = require("./committee");
 
 const app = express();
 
@@ -125,7 +126,11 @@ app.get("/", (req, res) => {
         },
         { sort: { _id: -1 } },
         (err, eventsData) => {
-          res.render("index", { blog: items, eventsData: eventsData });
+          res.render("index", {
+            blog: items,
+            eventsData: eventsData,
+            committee: committee,
+          });
         }
       );
     }
@@ -168,7 +173,6 @@ app.get("/events", (req, res) => {
     { sort: { _id: -1 } },
     (err, eventsData) => {
       res.render("events", { eventsData: eventsData });
-      console.log(eventsData);
     }
   );
   // res.render("events", { eventData: eventsData });

@@ -713,39 +713,57 @@ section {
 /*--------------------------------------------------------------
 # Team
 --------------------------------------------------------------*/
-
-.team-title {
-  padding-top: 3rem;
-  font-weight: 700;
+#team {
   text-align: center;
 }
 
-.team-slider {
+#team .team-card {
   background-image: linear-gradient(#f9cc97, #f68545);
-  border-radius: 50px;
-  margin-top: 4rem;
-  text-align: center;
+  border-radius: 10px;
+  border: none;
+  padding-top: 4rem;
 }
 
-.testimonial-text {
-  font-size: 3rem;
-  line-height: 1.5;
-}
-
-.carousel-item {
-  padding: 7% 15%;
-}
-
-.testimonial-img {
-  width: 20%;
+#team .team-img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
   border-radius: 100%;
-  margin: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+  top: 4.4rem;
 }
 
-.swiper-scrollbar {
-  position: absolute;
-  bottom: 200px;
+#team .card-title {
+  font-weight: 700;
 }
+
+#team .team-slider {
+  width: 100%;
+  margin: 0 0 40px;
+  padding: 0 0 45px;
+}
+
+#team .swiper-slide {
+  width: 25sd0px;
+  opacity: 0.5;
+  transition: 0.7s;
+}
+
+#team .swiper-slide-active {
+  opacity: 1;
+  z-index: 1;
+  transform: scale(1.2);
+}
+
+#team .swiper-button-next,
+.swiper-button-prev {
+  color: #f9cc97;
+}
+
 /*--------------------------------------------------------------
 # Event
 --------------------------------------------------------------*/
