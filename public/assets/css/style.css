@@ -725,8 +725,8 @@ section {
 }
 
 #team .team-img {
-  width: 8rem;
-  height: 8rem;
+  width: 7rem;
+  height: 7rem;
   object-fit: cover;
   border-radius: 100%;
   display: block;
@@ -739,6 +739,7 @@ section {
 
 #team .card-title {
   font-weight: 700;
+  font-size: 17px;
 }
 
 #team .team-slider {
@@ -762,6 +763,16 @@ section {
 #team .swiper-button-next,
 .swiper-button-prev {
   color: #f9cc97;
+}
+
+@media (max-width: 991px) {
+  #team .card-title {
+    font-size: 12px;
+  }
+
+  #team .card-text {
+    font-size: 13px;
+  }
 }
 
 /*--------------------------------------------------------------

@@ -246,12 +246,12 @@
   new Swiper(".team-slider", {
     centeredSlides: true,
     loop: true,
-    speed: 500,
+    speed: 1000,
     slidesPerView: 1.5,
-    spaceBetween: 50,
+    spaceBetween: 40,
     clickable: true,
     autoplay: {
-      delay: 2000,
+      delay: 5000,
     },
     // navigation: {
     //   nextEl: ".swiper-button-next",
